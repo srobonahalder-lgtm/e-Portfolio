@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Analysis - Portfolio</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --accent-color: #2d6a4f;
+            --highlight-color: #52b788;
+            --dark-bg: #081c15;
+            --card-border: #d8f3dc;
+            --text-main: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background-color: #f6f9f7;
+        }
+
+        .container-custom {
+            max-width: 1460px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(8, 28, 21, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            padding: 16px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            font-size: 1.5rem;
+            color: #74c69d !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-back-home {
+            color: #ffffff;
+            border: 1px solid rgba(116, 198, 157, 0.5);
+            background: rgba(45, 106, 79, 0.35);
+            padding: 0.45rem 1.15rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back-home:hover {
+            background: #52b788;
+            color: #081c15;
+            border-color: #52b788;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Carousel */
+        .carousel-item img {
+            height: 520px;
+            object-fit: cover;
+            filter: brightness(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 320px;
+            }
+        }
+
+        /* Table of Contents */
+        .toc-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--accent-color);
+        }
+
+        .toc-section h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #264653;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background-color: #f1f8f4;
+            border: 1px solid #d8f3dc;
+            transition: all 0.25s ease;
+        }
+
+        .toc-list li a:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* Analysis Cards */
+        .analysis-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.07);
+            margin-bottom: 65px;
+            overflow: hidden;
+            border: 1px solid #dbe7e2;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header-banner {
+            background: linear-gradient(135deg, #081c15, #1b4332, #2d6a4f);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 2.25rem;
+            letter-spacing: 1.8px;
+            padding: 24px 30px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .section-header-banner {
+                font-size: 1.6rem;
+                padding: 18px 20px;
+            }
+        }
+
+        .section-body {
+            padding: 42px;
+        }
+
+        .section-body h5 {
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-top: 6px;
+            margin-bottom: 22px;
+            font-size: 2.15rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 768px) {
+            .section-body h5 {
+                font-size: 1.55rem;
+            }
+        }
+
+        .section-body h6 {
+            font-weight: 800;
+            color: #1b4332;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 1.35rem;
+        }
+
+        .section-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 18px;
+        }
+
+        /* Map Layout Box */
+        .layout-upload-box {
+            width: 100%;
+            min-height: 580px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            padding: 12px;
+        }
+
+        .map-preview-img {
+            width: 100%;
+            height: auto;
+            max-height: 720px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 12px;
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.3s ease;
+        }
+
+        .map-preview-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #081c15;
+            color: #b7e4c7;
+            padding: 50px 0 35px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            margin: 0 8px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--highlight-color);
+            color: #081c15;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-custom d-flex justify-content-between align-items-center w-100">
+            <a class="navbar-brand" href="#home">
+                <i class="fa-solid fa-map-location-dot me-2"></i>Spatial Analysis
+            </a>
+            <a href="index.html#projects" class="btn-back-home">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div id="spatialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#spatialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#spatialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#spatialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#spatialCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#spatialCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Clear Sky and Majestic Mountain Peak">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Alpine Mountain Lake Mirror Reflection">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Rugged Mountain Range and Pine Forest">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Misty Sunlit Mountain Valley">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="High Altitude Glacial Peak Landscape">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#spatialCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#spatialCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container-custom my-5">
+
+        <!-- Table of Contents -->
+        <section id="toc" class="toc-section">
+            <h3><i class="fa-solid fa-list-check me-2"></i>Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#lst-1995"><i class="fa-solid fa-temperature-half"></i> i) LAND SURFACE TEMPERATURE — 1995</a></li>
+                <li><a href="#lst-2005"><i class="fa-solid fa-temperature-three-quarters"></i> ii) LAND SURFACE TEMPERATURE — 2005</a></li>
+                <li><a href="#lst-2015"><i class="fa-solid fa-temperature-high"></i> iii) LAND SURFACE TEMPERATURE — 2015</a></li>
+                <li><a href="#lst-2025"><i class="fa-solid fa-fire"></i> iV) LAND SURFACE TEMPERATURE — 2025</a></li>
+            </ul>
+        </section>
+
+        <!-- 1. Year 1995 -->
+        <section id="lst-1995" class="analysis-card">
+            <div class="section-header-banner">LAND SURFACE TEMPERATURE (LST) OF RAJARHAT BLOCK - 1995</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-lst-1995">
+                            <img class="map-preview-img" 
+                                 src="layouts/THERMAL_MAP_1995.jpg" 
+                                 alt="LST 1995 Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Thermal Environment and LST Dynamics of Rajarhat Block (1995)</h5>
+                        <p>This baseline assessment evaluates the spatial distribution of Land Surface Temperature (LST) across Rajarhat Block in 1995, where temperatures ranged from 17.49°C to 25.69°C.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Thermal Range & Ambient Baseline:</strong> Lower overall surface temperatures prevail across the block, with moderate temperature classes (20.26°C–21.64°C) dominating the agrarian landscape.</p>
+                        <p><strong>Thermal Comfort Zone:</strong> Prominent blue cooling zones are concentrated in the southwestern depression and scattered throughout northeastern wetland complexes and bheris, providing regional microclimatic buffering.</p>
+                        <p><strong>Thermal Critical Zone:</strong> High-temperature critical hotspots (red, 21.64°C–25.69°C) are minimal and fragmented, restricted to compact rural settlement clusters, dry fallow plots, and bare surfaces in the northwest.</p>
+                        <p>The 1995 thermal regime represents an agrarian-dominated rural ecosystem with minimal anthropogenically induced heat anomalies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Year 2005 -->
+        <section id="lst-2005" class="analysis-card">
+            <div class="section-header-banner">LAND SURFACE TEMPERATURE (LST) OF RAJARHAT BLOCK - 2005</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
+                        <div class="layout-upload-box" id="box-lst-2005">
+                            <img class="map-preview-img" 
+                                 src="layouts/THERMAL_MAP_2005.jpg" 
+                                 alt="LST 2005 Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+                        <h5>Thermal Environment and LST Dynamics of Rajarhat Block (2005)</h5>
+                        <p>This analysis captures the early-stage shifts in surface thermal patterns in 2005, showing an elevated LST range between 19.36°C and 29.18°C.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Emergence of Western Heat Clusters:</strong> Critical thermal zones (red, 24.79°C–29.18°C) begin coalescing along the western boundary and north-central corridors, aligning with initial land clearances, earthwork, and early construction of the New Town planned extension.</p>
+                        <p><strong>Thermal Comfort Stability:</strong> The large southwestern water body and northeastern aquaculture tracts remain resilient cooling buffers, keeping local temperatures below 22.10°C.</p>
+                        <p><strong>Transitional Matrix:</strong> The expansion of intermediate yellow and orange zones (23.02°C–24.79°C) marks the widespread conversion of active croplands into cleared and compacted construction plots.</p>
+                        <p>The 2005 phase highlights the onset of urban surface warming, driven by the replacement of vegetative cover with exposed soil and early infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Year 2015 -->
+        <section id="lst-2015" class="analysis-card">
+            <div class="section-header-banner">LAND SURFACE TEMPERATURE (LST) OF RAJARHAT BLOCK - 2015</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-lst-2015">
+                            <img class="map-preview-img" 
+                                 src="layouts/THERMAL MAP 2015.jpg" 
+                                 onerror="this.onerror=null; this.src='layouts/THERMAL_MAP_2015.jpg';"
+                                 alt="LST 2015 Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Thermal Environment and LST Dynamics of Rajarhat Block (2015)</h5>
+                        <p>This evaluation details the consolidation of urban heat patterns in 2015, marked by a sharp jump in maximum surface temperatures reaching 25.97°C to 36.75°C.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Consolidation of the Thermal Critical Core:</strong> The Thermal Critical Zone (red, 32.14°C–36.75°C) expands into a prominent, contiguous heat corridor across western and central Rajarhat, driven by dense built-up areas, asphalt roads, and commercial complexes.</p>
+                        <p><strong>Shrinkage of Thermal Comfort Zones:</strong> Blue comfort zones contract sharply, becoming confined primarily to major retained reservoirs in the southwest and isolated water bodies in the east.</p>
+                        <p><strong>Intensification of Microclimatic Gradients:</strong> A steep temperature gradient develops between the intensely built western core and the remaining peripheral agricultural tracts.</p>
+                        <p>The 2015 thermal profile clearly demonstrates a well-established Surface Urban Heat Island (SUHI) generated by rapid, large-scale metropolitan expansion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Year 2025 -->
+        <section id="lst-2025" class="analysis-card">
+            <div class="section-header-banner">LAND SURFACE TEMPERATURE (LST) OF RAJARHAT BLOCK - 2025</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
+                        <div class="layout-upload-box" id="box-lst-2025">
+                            <img class="map-preview-img" 
+                                 src="layouts/thermal_map_2025.jpg" 
+                                 onerror="this.onerror=null; this.src='layouts/THERMAL_MAP_2025.jpg';"
+                                 alt="LST 2025 Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+                        <h5>Thermal Environment and LST Dynamics of Rajarhat Block (2025)</h5>
+                        <p>This assessment tracks the peak thermal configuration in 2025, where surface temperatures reach extreme highs ranging from 28.91°C to 42.92°C.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Aggressive Thermal Critical Expansion:</strong> The critical zone (red, 36.82°C–42.92°C) spans nearly the entire western half and penetrates deep into central and southeastern sectors, reflecting massive impervious surface coverage and dense urban fabric.</p>
+                        <p><strong>Isolation of Cooling Buffers:</strong> Thermal Comfort Zones (28.91°C–33.30°C) are strictly restricted to deep water reservoirs and preserved wetland nodes, while smaller water bodies have largely lost their local cooling effect.</p>
+                        <p><strong>Pervasive High-Temperature Matrix:</strong> Intermediate and elevated thermal classes (yellow and orange, >35.00°C) cover almost all remaining open lands, signaling severe landscape-level heat stress.</p>
+                        <p>The 2025 mapping underscores an acute surface urban heat island effect, demonstrating an urgent need for urban green corridors, reflective cool roofs, and wetland conservation in Rajarhat Block.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container-custom">
+            <p>&copy; 2026 Portfolio | Spatial Analysis & Land Surface Temperature Assessment</p>
+            <div class="social-links">
+                <a href="mailto:contact@geospatial.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

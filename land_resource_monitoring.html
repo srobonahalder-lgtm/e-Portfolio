@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Resource Monitoring - Portfolio</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --accent-color: #2d6a4f;
+            --highlight-color: #52b788;
+            --dark-bg: #081c15;
+            --card-border: #d8f3dc;
+            --text-main: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background-color: #f6f9f7;
+        }
+
+        .container-custom {
+            max-width: 1460px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(8, 28, 21, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            padding: 16px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            font-size: 1.5rem;
+            color: #74c69d !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-back-home {
+            color: #ffffff;
+            border: 1px solid rgba(116, 198, 157, 0.5);
+            background: rgba(45, 106, 79, 0.35);
+            padding: 0.45rem 1.15rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back-home:hover {
+            background: #52b788;
+            color: #081c15;
+            border-color: #52b788;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Carousel */
+        .carousel-item img {
+            height: 520px;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 320px;
+            }
+        }
+
+        /* Table of Contents */
+        .toc-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--accent-color);
+        }
+
+        .toc-section h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #264653;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background-color: #f1f8f4;
+            border: 1px solid #d8f3dc;
+            transition: all 0.25s ease;
+        }
+
+        .toc-list li a:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* Analysis Cards */
+        .analysis-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.07);
+            margin-bottom: 65px;
+            overflow: hidden;
+            border: 1px solid #dbe7e2;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header-banner {
+            background: linear-gradient(135deg, #081c15, #1b4332, #2d6a4f);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 2.25rem;
+            letter-spacing: 1.8px;
+            padding: 24px 30px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .section-header-banner {
+                font-size: 1.6rem;
+                padding: 18px 20px;
+            }
+        }
+
+        .section-body {
+            padding: 42px;
+        }
+
+        .section-body h5 {
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-top: 6px;
+            margin-bottom: 22px;
+            font-size: 2.15rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 768px) {
+            .section-body h5 {
+                font-size: 1.55rem;
+            }
+        }
+
+        .section-body h6 {
+            font-weight: 800;
+            color: #1b4332;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 1.35rem;
+        }
+
+        .section-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 18px;
+        }
+
+        /* Map Layout Box */
+        .layout-upload-box {
+            width: 100%;
+            min-height: 580px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            padding: 12px;
+        }
+
+        .map-preview-img {
+            width: 100%;
+            height: auto;
+            max-height: 720px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 12px;
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.3s ease;
+        }
+
+        .map-preview-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #081c15;
+            color: #b7e4c7;
+            padding: 50px 0 35px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            margin: 0 8px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--highlight-color);
+            color: #081c15;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-custom d-flex justify-content-between align-items-center w-100">
+            <a class="navbar-brand" href="#home">
+                <i class="fa-solid fa-seedling me-2"></i>Land Resource Monitoring
+            </a>
+            <a href="index.html#projects" class="btn-back-home">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div id="landCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#landCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#landCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#landCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#landCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#landCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Agricultural Landscape Monitoring">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Satellite Earth Observation">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Forest Canopy Monitoring">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Surface Hydrology and Water Bodies">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Terrain & Heterogeneous Land Cover">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#landCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#landCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container-custom my-5">
+
+        <!-- Table of Contents -->
+        <section id="toc" class="toc-section">
+            <h3><i class="fa-solid fa-list-check me-2"></i>Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#lulc"><i class="fa-solid fa-map"></i> i) LAND USE & LAND COVER ANALYSIS</a></li>
+                <li><a href="#forest"><i class="fa-solid fa-tree"></i> ii) FOREST COVER ANALYSIS</a></li>
+                <li><a href="#water-body-classification"><i class="fa-solid fa-droplet"></i> iii) SURFACE WATER MONITORING</a></li>
+                <li><a href="#water-body-classification" class="ps-4"><i class="fa-solid fa-water"></i> — Surface Water Body Classification</a></li>
+                <li><a href="#pond-density" class="ps-4"><i class="fa-solid fa-braille"></i> — Pond Density Distribution</a></li>
+                <li><a href="#water-dynamicity" class="ps-4"><i class="fa-solid fa-compass"></i> — Directional Water Dynamicity</a></li>
+                <li><a href="#mixing"><i class="fa-solid fa-cubes-stacked"></i> iV) LAND USE MIXING ANALYSIS</a></li>
+            </ul>
+        </section>
+
+        <!-- i) LAND USE & LAND COVER ANALYSIS -->
+        <section id="lulc" class="analysis-card">
+            <div class="section-header-banner">LAND USE & LAND COVER ANALYSIS</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-lulc">
+                            <img class="map-preview-img" 
+                                 src="layouts/LULC.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/LULC.jpg';"
+                                 alt="Land Use & Land Cover Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Land Use and Land Cover (LULC) Dynamics of Rajnagar Block (1995–2025)</h5>
+                        <p>This multi-temporal map series illustrates the decadal shifts in Land Use and Land Cover (LULC) across the Rajnagar Block spanning four observation periods: 1995, 2005, 2015, and 2025. The classification delineates nine distinct thematic classes: River Sand, Water Bodies, Dense Forest, Vegetation, Settlement, Wet Fallow Land, Agricultural Land, Dry Fallow Land, and Roads.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Settlement and Infrastructure Expansion:</strong> Settlements (marked in red) along with the connecting road network demonstrate steady spatial expansion from 1995 through 2025, driven by demographic growth, rural development, and expanding built-up nodes across the block.</p>
+                        <p><strong>Agricultural and Fallow Land Transitions:</strong> A pronounced structural shift is evident across the central and southern plains. While active agricultural land (yellow) occupied substantial acreage in 1995 and 2005, the later periods (2015–2025) display a marked transition toward dry fallow land, reflecting shifts in cropping intensity, soil moisture dynamics, and seasonal land utilization.</p>
+                        <p><strong>Forest Cover and Vegetation Stability:</strong> Dense forest (dark green) and general vegetation (bright green) remain strongly clustered in the northern and northwestern tracts. These forest patches show resilience and localized canopy retention over the 30-year span, highlighting important ecological reserves and afforestation zones.</p>
+                        <p><strong>Hydrological and Wet Fallow Fluctuations:</strong> Water bodies (blue) and wet fallow land (magenta) exhibit noticeable surface area fluctuations across the decades, corresponding to seasonal rainfall patterns, minor irrigation tank storage, and micro-watershed water availability.</p>
+                        <p>These maps were generated using multi-temporal satellite datasets and digital image classification in GIS, providing quantitative insight into long-term landscape transformation. The analysis provides an essential spatial baseline to support sustainable land management, soil-water conservation, and drought-resilient agricultural planning in Rajnagar Block.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ii) FOREST COVER ANALYSIS -->
+        <section id="forest" class="analysis-card">
+            <div class="section-header-banner">FOREST COVER ANALYSIS</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
+                        <div class="layout-upload-box" id="box-forest">
+                            <img class="map-preview-img" 
+                                 src="layouts/FOREST_4YRS_FINAL.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/FOREST_4YRS_FINAL.jpg';"
+                                 alt="Forest Cover Analysis Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+                        <h5>Forest Cover Dynamics of Binpur-II Block (1995–2025)</h5>
+                        <p>This multi-temporal change detection series analyzes forest canopy shifts across Binpur-II Block over three decades (1995–2005, 2005–2015, 2015–2025) and the cumulative 30-year period (1995–2025), categorized into Regeneration, Degeneration, and Unchanged forest areas.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Core Canopy Persistence:</strong> The extensive sal and mixed dry-deciduous forest belt across the northwestern highlands shows remarkable persistence (Unchanged, yellow), retaining primary canopy density across all three decades.</p>
+                        <p><strong>Canopy Degeneration:</strong> Forest degradation and thinning (red) were most pronounced during the 2005–2015 interval along peripheral boundaries and isolated southeastern fragments, driven by localized extraction pressure and edge-effect degradation.</p>
+                        <p><strong>Regeneration & Regrowth:</strong> Substantial canopy recovery (green) is evident along forest fringes and eastern patches—especially visible in 1995–2005 and 2015–2025—reflecting natural coppice regeneration and community-led conservation efforts under Joint Forest Management (JFM).</p>
+                        <p><strong>Cumulative 30-Year Trajectory (1995–2025):</strong> The cumulative map highlights that fringe regeneration has largely counterbalanced historical forest loss, effectively sustaining the core forest corridor of Binpur-II.</p>
+                        <p>This geospatial assessment serves as a baseline for monitoring biodiversity corridors, mitigating habitat fragmentation, and directing micro-watershed forestry interventions in the Jangalmahal region.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- iii) SURFACE WATER MONITORING: PART 1 -->
+        <section id="water-body-classification" class="analysis-card">
+            <div class="section-header-banner">SURFACE WATER BODY CLASSIFICATION</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-sw-class">
+                            <img class="map-preview-img" 
+                                 src="layouts/WATER_EXTRACT.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/WATER_EXTRACT.jpg';"
+                                 alt="Surface Water Body Classification Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Surface Water Body Extraction and Classification of Baghmundi Block (2025)</h5>
+                        <p>This inventory delineates the spatial distribution and size hierarchy of extracted surface water bodies across the block, categorized into Small, Medium, and Large impoundments.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Reservoir and Major Storage Clustering:</strong> Large water bodies (dark blue) are strategically concentrated in the south-central and north-central depressions, representing major irrigation reservoirs, check reservoirs, and hydrologic storage structures.</p>
+                        <p><strong>Drainage-Aligned Linear Waterways:</strong> Medium water bodies (cyan) prominently trace seasonal drainage networks and foothill stream courses, acting as intermediate retention traps along natural drainage lines.</p>
+                        <p><strong>Widespread Micro-Storage:</strong> Small water bodies (light blue) form an extensive, finely dispersed network across the central and eastern agrarian landscape, serving as primary sources for domestic needs and emergency irrigation during dry spells.</p>
+                        <p>This extracted surface water inventory provides essential baseline data for estimating surface storage capacity, assessing desiltation needs, and planning integrated drought-resilience frameworks in Baghmundi Block.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- iii) SURFACE WATER MONITORING: PART 2 -->
+        <section id="pond-density" class="analysis-card">
+            <div class="section-header-banner">POND DENSITY DISTRIBUTION</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
+                        <div class="layout-upload-box" id="box-pond">
+                            <img class="map-preview-img" 
+                                 src="layouts/POND_DENSITY.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/POND_DENSITY.jpg';"
+                                 alt="Pond Density Distribution Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+                        <h5>Pond Density Analysis of Baghmundi Block (2025)</h5>
+                        <p>This spatial analysis maps the concentration of localized surface ponds across Baghmundi Block, categorizing pond clustering from Very High to Low/Very Low density zones.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Piedmont and Lowland Concentration:</strong> Very High to Moderate pond density (lighter blue tones) dominates the eastern and northeastern valley plains, where level topography facilitates the construction of community water retention tanks (bandhs) and excavated farm ponds (hapas).</p>
+                        <p><strong>Plateau and Upland Scarcity:</strong> Zones of Low to Very Low density (dark blue clusters) are concentrated across the central, southern, and western highland tracts, where rugged slopes, shallow bedrock, and hilly terrain restrict pond excavation.</p>
+                        <p><strong>Decentralized Storage Distribution:</strong> Moderate density corridors connect the undulating foothill transitions, serving as vital micro-catchment water harvesting points for rainfed agricultural fields.</p>
+                        <p>This density mapping identifies critical water-deficit clusters, pinpointing priority zones for new farm pond excavations and micro-watershed interventions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- iii) SURFACE WATER MONITORING: PART 3 -->
+        <section id="water-dynamicity" class="analysis-card">
+            <div class="section-header-banner">DIRECTIONAL WATER DYNAMICITY</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-dynamicity">
+                            <img class="map-preview-img" 
+                                 src="layouts/WATER DIRECTIONWISE DYNAMICITY.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/WATER DIRECTIONWISE DYNAMICITY.jpg';"
+                                 alt="Directional Water Dynamicity Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Direction-wise Water Dynamicity of Baghmundi Block (2025)</h5>
+                        <p>This multi-ring buffer and quadrant analysis quantifies directional surface water variability and hydrologic fluctuation across concentric zones radiating from the block's core.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Southwestern Dynamic Core:</strong> The southwest (SW) quadrant exhibits the highest dynamicity values (mean 7.22–9.83, marked in red and deep orange), driven by steep relief variations, rapid monsoon runoff, and major seasonal reservoir level fluctuations along the highland escarpment.</p>
+                        <p><strong>Northeastern Hydrologic Stability:</strong> The northeast (NE) quadrant consistently records the lowest dynamic index (mean 2.15–2.92, marked in blue), indicating stable, less volatile surface water retention across gentler drainage gradients.</p>
+                        <p><strong>Concentric Distance Gradients:</strong> The north-central and southeastern quadrants display intermediate dynamicity (yellow and green zones), showing a gradual radial increase in surface water variation toward the block's outer drainage peripheries.</p>
+                        <p>This directional model delineates hydrological volatility gradients, offering a spatial baseline to strategically site check dams and flood-attenuation structures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- iV) LAND USE MIXING ANALYSIS -->
+        <section id="mixing" class="analysis-card">
+            <div class="section-header-banner">LAND USE MIXING ANALYSIS</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
+                        <div class="layout-upload-box" id="box-mixing">
+                            <img class="map-preview-img" 
+                                 src="layouts/LUM_FINAL2.jpeg" 
+                                 onerror="this.onerror=null; this.src='layouts/LUM_FINAL2.jpg';"
+                                 alt="Land Use Mixing Analysis Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+                        <h5>Land Use Mixing (LUM) Analysis of Rajnagar Block (1995–2025)</h5>
+                        <p>This multi-temporal map series illustrates the dynamic shifts in grid-based Land Use Mixing (LUM) across Rajnagar Block across four observation periods: 1995, 2005, 2015, and 2025. The analysis measures spatial diversity and landscape heterogeneity, categorizing mixing intensity into five levels ranging from Very Low to Very High.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Reduction in High-Entropy Heterogeneity:</strong> In 1995 and 2005, Very High (red) and High (orange) mixing values dominated the central and southern landscape, reflecting a finely fragmented mosaic of interspersed smallholder croplands, seasonal fallow plots, and scattered homesteads. By 2015 and 2025, these very high mixing clusters contract noticeably.</p>
+                        <p><strong>Emergence of Homogenized Land Parcels:</strong> From 2015 onward, there is a substantial expansion of Moderate (yellow) and Low/Very Low (green and blue) mixing zones across the central plains. This indicates land cover homogenization driven by the consolidation of large contiguous tracts of dry fallow land and standardized agricultural plots.</p>
+                        <p><strong>Persistent Transitional Hotspots:</strong> High and Very High mixing zones remain sustained along built-up fringes, road networks, and the forest-agriculture ecotone in the northwestern sector, where active land transformations and human-nature interfaces maintain multi-class complexity.</p>
+                        <p><strong>Decadal Landscape Reorganization:</strong> Over the 30-year baseline, the block transitions from an intensely mixed, heterogeneous parcel structure toward a more segregated, mono-dominant spatial configuration.</p>
+                        <p>This geospatial mixing assessment serves as a critical baseline for analyzing landscape fragmentation, guiding agro-ecological zoning, and informing sustainable land-use allocation in Rajnagar Block.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container-custom">
+            <p>&copy; 2026 Portfolio | Land Resource Monitoring & Geospatial Assessment</p>
+            <div class="social-links">
+                <a href="mailto:contact@geospatial.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

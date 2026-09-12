@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web GIS - Portfolio</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --accent-color: #2d6a4f;
+            --highlight-color: #52b788;
+            --dark-bg: #081c15;
+            --card-border: #d8f3dc;
+            --text-main: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background-color: #f6f9f7;
+        }
+
+        .container-custom {
+            max-width: 1460px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(8, 28, 21, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            padding: 16px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            font-size: 1.5rem;
+            color: #74c69d !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-back-home {
+            color: #ffffff;
+            border: 1px solid rgba(116, 198, 157, 0.5);
+            background: rgba(45, 106, 79, 0.35);
+            padding: 0.45rem 1.15rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back-home:hover {
+            background: #52b788;
+            color: #081c15;
+            border-color: #52b788;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Carousel */
+        .carousel-item img {
+            height: 520px;
+            object-fit: cover;
+            filter: brightness(0.9);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 320px;
+            }
+        }
+
+        /* Table of Contents */
+        .toc-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--accent-color);
+        }
+
+        .toc-section h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #264653;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background-color: #f1f8f4;
+            border: 1px solid #d8f3dc;
+            transition: all 0.25s ease;
+        }
+
+        .toc-list li a:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* Analysis Cards */
+        .analysis-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.07);
+            margin-bottom: 65px;
+            overflow: hidden;
+            border: 1px solid #dbe7e2;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header-banner {
+            background: linear-gradient(135deg, #081c15, #1b4332, #2d6a4f);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 2.25rem;
+            letter-spacing: 1.8px;
+            padding: 24px 30px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .section-header-banner {
+                font-size: 1.6rem;
+                padding: 18px 20px;
+            }
+        }
+
+        .section-body {
+            padding: 42px;
+        }
+
+        .section-body h5 {
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-top: 6px;
+            margin-bottom: 22px;
+            font-size: 2.15rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 768px) {
+            .section-body h5 {
+                font-size: 1.55rem;
+            }
+        }
+
+        .section-body h6 {
+            font-weight: 800;
+            color: #1b4332;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 1.35rem;
+        }
+
+        .section-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 18px;
+        }
+
+        /* Web GIS Widget & Frame Boxes */
+        .widget-box {
+            background: #f8fbf9;
+            border: 2px dashed #74c69d;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .widget-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .select-wrapper {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            color: #334155;
+            background-color: #ffffff;
+            border: 1px solid #74c69d;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .select-wrapper select:focus {
+            border-color: #2d6a4f;
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+        }
+
+        .btn-explore {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #2d6a4f;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-explore:hover {
+            background-color: #1b4332;
+            box-shadow: 0 4px 12px rgba(27, 67, 50, 0.3);
+        }
+
+        .btn-explore-full {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2d6a4f;
+            background-color: #ffffff;
+            border: 2px solid #2d6a4f;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-explore-full:hover {
+            background-color: #2d6a4f;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+        }
+
+        #error-msg {
+            width: 100%;
+            color: #d93025;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .storymap-frame {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        /* Footer */
+        footer {
+            background: #081c15;
+            color: #b7e4c7;
+            padding: 50px 0 35px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            margin: 0 8px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--highlight-color);
+            color: #081c15;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-custom d-flex justify-content-between align-items-center w-100">
+            <a class="navbar-brand" href="#home">
+                <i class="fa-solid fa-globe me-2"></i>Web GIS
+            </a>
+            <a href="index.html#projects" class="btn-back-home">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel with Attractive Non-Human Web GIS Pictures -->
+    <div id="webgisCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#webgisCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#webgisCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#webgisCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#webgisCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#webgisCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Global Satellite Earth View and Connectivity">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Topographic Contour Map and Elevation Lines">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Urban Nighttime Light Grid and Sprawl Mapping">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Cartographic Map Navigation and Spatial Planning">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Spatial Data Analytics and GIS Intelligence Dashboard">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#webgisCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#webgisCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container-custom my-5">
+
+        <!-- Table of Contents -->
+        <section id="toc" class="toc-section">
+            <h3><i class="fa-solid fa-list-check me-2"></i>Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#storymap"><i class="fa-solid fa-map-location-dot"></i> i) WEB BASED STORY MAP</a></li>
+                <li><a href="#terrain"><i class="fa-solid fa-mountain"></i> ii) INTERACTIVE TERRAIN ANALYSIS</a></li>
+            </ul>
+        </section>
+
+        <!-- i) WEB BASED STORY MAP -->
+        <section id="storymap" class="analysis-card">
+            <div class="section-header-banner">WEB BASED STORY MAP</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <iframe src="https://uploads.knightlab.com/storymapjs/103b59f605c85189194977a3d926c7ef/story-map/draft.html" class="storymap-frame" title="Web Based Story Map"></iframe>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>Spatial Narrative & Interactive Web Cartography</h5>
+                        <p>An interactive, web-based cartographic journey combining geospatial vector layers with rich archival imagery to document the historic cultural evolution and heritage food lanes of North and Central Kolkata.</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Geospatial Waypoints:</strong> Interactive pins along Baghbazar, Shobhabazar, and Maniktala connecting cultural monuments with historical narratives.</p>
+                        <p><strong>Dynamic Responsive Canvas:</strong> Utilizes responsive Leaflet/WebGIS controls allowing user-driven panning, route inspection, and geotagged audio-visual overlays.</p>
+                        <p>Demonstrates how Web GIS bridges technical spatial datasets with engaging public-facing digital humanities and heritage tourism.</p>
+
+                        <div class="mt-4">
+                            <a href="https://uploads.knightlab.com/storymapjs/103b59f605c85189194977a3d926c7ef/story-map/draft.html" target="_blank" rel="noopener" class="btn btn-success btn-lg px-4" style="background-color: var(--accent-color); border: none;">
+                                <i class="fa-solid fa-expand me-2"></i> Open Fullscreen Story Map ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ii) INTERACTIVE TERRAIN ANALYSIS -->
+        <section id="terrain" class="analysis-card">
+            <div class="section-header-banner">MORPHOMETRIC ANALYSIS OF UTTARAKHAND</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-12">
+                        <h5>Introduction</h5>
+                        <p>Uttarakhand exhibits dramatic topographic variation, transitioning rapidly from the outer Shivalik foothills to the glaciated peaks of the Greater Himalayas. This study utilizes GIS and Digital Elevation Models (DEMs) to evaluate key linear, areal, and relief morphometric parameters across selected river basins. Quantifying drainage density, bifurcation ratios, and basin relief highlights the structural and lithological controls governing surface runoff, soil erosion susceptibility, and flash flood hazards, providing an empirical baseline for watershed prioritization and hazard mitigation in this fragile mountain terrain.</p>
+
+                        <h5>Overview</h5>
+                        <p>The morphometric analysis of Uttarakhand reveals pronounced terrain and hydro-geomorphic gradients across the state, with northern and higher Himalayan districts exhibiting extreme absolute and relative relief, steep slope gradients, and high ruggedness numbers, indicating deeply incised valleys, intense structural control, and severe susceptibility to mass movements and flash floods. In contrast, the southern foothill and Dun valley districts display lower relief ratios, permeable alluvial fan deposits, and distinct drainage frequencies characteristic of dynamic piedmont and fluvial plains. Overall, these variations emphasize the critical need for basin-specific micro-watershed prioritization, landslide risk zonation, and disaster-resilient land and water resource management across the fragile mountain state.</p>
+
+                        <!-- Interactive Widget Box -->
+                        <div class="widget-box">
+                            <h4 style="font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">
+                                <i class="fa-solid fa-filter me-2"></i> Uttarakhand Morphometric Explorer Portal
+                            </h4>
+                            <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 15px;">
+                                Select a district and parameter to explore interactive Web GIS maps across Uttarakhand:
+                            </p>
+
+                            <div class="widget-container">
+                                <!-- District Dropdown -->
+                                <div class="select-wrapper">
+                                    <select id="districtSelect">
+                                        <option value="">--Select District--</option>
+                                        <option value="UTTARKASHI">Uttarkashi</option>
+                                        <option value="CHAMOLI">Chamoli</option>
+                                        <option value="RUDRA PRAYAG">Rudra Prayag</option>
+                                        <option value="TEHRI GARHWAL">Tehri Garhwal</option>
+                                        <option value="PAURI GARHWAL">Pauri Garhwal</option>
+                                        <option value="DEHRADUN">Dehradun</option>
+                                        <option value="PITHORAGARH">Pithoragarh</option>
+                                        <option value="BAGESHWAR">Bageshwar</option>
+                                        <option value="ALMORA">Almora</option>
+                                        <option value="CHAMPAWAT">Champawat</option>
+                                        <option value="NAINITAL">Nainital</option>
+                                        <option value="UDHAM SINGH NAGAR">Udham Singh Nagar</option>
+                                        <option value="HARIDWAR">Haridwar</option>
+                                    </select>
+                                </div>
+
+                                <!-- Parameter Dropdown -->
+                                <div class="select-wrapper">
+                                    <select id="paramSelect">
+                                        <option value="">--Select Parameter--</option>
+                                        <option value="RELATIVE RELIEF">Relative Relief</option>
+                                        <option value="ABSOLUTE RELIEF">Absolute Relief</option>
+                                        <option value="DISSECTION INDEX">Dissection Index</option>
+                                        <option value="DRAINAGE DENSITY">Drainage Density</option>
+                                        <option value="RUGGEDNESS INDEX">Ruggedness Index</option>
+                                        <option value="WETNESS INDEX">Wetness Index</option>
+                                    </select>
+                                </div>
+
+                                <!-- Explore Map Button -->
+                                <button class="btn-explore" onclick="handleExplore()">Explore Map ↗</button>
+
+                                <!-- Explore Full Project Button -->
+                                <a href="https://srobonahalder-lgtm.github.io/MORPHOMETRIC_ANALYSIS/" target="_blank" rel="noopener" class="btn-explore-full">
+                                    Explore Full Project ↗
+                                </a>
+                            </div>
+                            <div id="error-msg">Please select both a District and a Parameter.</div>
+                        </div>
+
+                        <h5 class="mt-5">Conclusion & Key Findings</h5>
+                        <p><strong>• High-Altitude Fragility:</strong> Northern Himalayan districts (Uttarkashi, Chamoli, Pithoragarh) exhibit steep relief gradients, high ruggedness, and intense dissection, marking them as high-energy catchments acutely susceptible to flash floods, slope failure, and rapid sediment yield.</p>
+                        <p><strong>• Foothill Drainage Dynamics:</strong> Southern foothill and alluvial districts (Haridwar, Udham Singh Nagar, Dehradun) display lower relief ratios and elevated Topographic Wetness Indices, reflecting deposition-dominated regimes that require focused surface runoff and drainage management.</p>
+                        <p><strong>• Web GIS Utility:</strong> Translating these multi-parameter indices into an interactive Web GIS platform converts complex spatial metrics into a direct decision-support system, facilitating targeted soil-water conservation, optimal check-dam siting, and risk-resilient land-use planning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container-custom">
+            <p>&copy; 2026 Portfolio | Web GIS & Interactive Terrain Analysis</p>
+            <div class="social-links">
+                <a href="mailto:contact@geospatial.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Terrain Analysis Navigation Script -->
+    <script>
+        const linkDatabase = {
+            "UTTARKASHI": {
+                "RELATIVE RELIEF": "https://srobonahalder-lgtm.github.io/Relative_Relief-Uttarkashi/",
+                "ABSOLUTE RELIEF": "https://srobonahalder-lgtm.github.io/Absolute_Relief-Uttarkashi/",
+                "DISSECTION INDEX": "https://srobonahalder-lgtm.github.io/Dissection_Index-Uttarkashi/",
+                "DRAINAGE DENSITY": "https://srobonahalder-lgtm.github.io/Drainage_Density-Uttarkashi/",
+                "RUGGEDNESS INDEX": "https://srobonahalder-lgtm.github.io/Ruggedness_Index_Uttarkashi/",
+                "WETNESS INDEX": "https://srobonahalder-lgtm.github.io/Wetness_index-Uttarkashi/"
+            },
+            "CHAMOLI": {
+                "RELATIVE RELIEF": "https://srobonahalder-lgtm.github.io/Relative_Relief-Chamoli/",
+                "ABSOLUTE RELIEF": "https://srobonahalder-lgtm.github.io/Absolute_Relief-Chamoli/",
+                "DISSECTION INDEX": "https://srobonahalder-lgtm.github.io/Dissection_Index-Chamoli/",
+                "DRAINAGE DENSITY": "https://srobonahalder-lgtm.github.io/Drainage_Density/",
+                "RUGGEDNESS INDEX": "https://srobonahalder-lgtm.github.io/Ruggedness_Index-Chamoli/",
+                "WETNESS INDEX": "https://srobonahalder-lgtm.github.io/Wetness_index-Chamoli/"
+            },
+            "RUDRA PRAYAG": {
+                "RELATIVE RELIEF": "https://srobonahalder-lgtm.github.io/Relative_Relief-Rudra_Prayag/",
+                "ABSOLUTE RELIEF": "https://srobonahalder-lgtm.github.io/Absolute_Relief-Rudra_Prayag/",
+                "DISSECTION INDEX": "https://srobonahalder-lgtm.github.io/Dissection_Index-Rudra_Prayag/",
+                "DRAINAGE DENSITY": "https://srobonahalder-lgtm.github.io/Drainage_Density-Rudra_Prayag/",
+                "RUGGEDNESS INDEX": "https://srobonahalder-lgtm.github.io/Ruggedness_Index-Rudra_Prayag/",
+                "WETNESS INDEX": "https://srobonahalder-lgtm.github.io/Wetness_index-Rudra_Prayag/"
+            },
+            "TEHRI GARHWAL": {
+                "RELATIVE RELIEF": "https://taniabiswas1111198-commits.github.io/RELATIVE_RELIEF_TEHRI_GARHWAL/",
+                "ABSOLUTE RELIEF": "https://taniabiswas1111198-commits.github.io/ABSOLUTE_RELIEF_TEHRI-GARHWAL/",
+                "DISSECTION INDEX": "https://taniabiswas1111198-commits.github.io/DISSECTION-_INDEX_TEHRI_GARHWAL/",
+                "DRAINAGE DENSITY": "https://taniabiswas1111198-commits.github.io/DRAINAGE_DENSITY_TEHRI_GARHWAL/",
+                "RUGGEDNESS INDEX": "https://taniabiswas1111198-commits.github.io/TRI__TEHRI_GARHWAL/",
+                "WETNESS INDEX": "https://taniabiswas1111198-commits.github.io/TWI__TEHRI_GARHWAL/"
+            },
+            "PAURI GARHWAL": {
+                "RELATIVE RELIEF": "https://taniabiswas1111198-commits.github.io/RELATIVE_RELIEF_PAURI_GARHWAL/",
+                "ABSOLUTE RELIEF": "https://taniabiswas1111198-commits.github.io/ABSOLUTE_RELIEF_PAURI_GARHWAL/",
+                "DISSECTION INDEX": "https://taniabiswas1111198-commits.github.io/DISSECTION-_INDEX__PAURI_GARHWAL/",
+                "DRAINAGE DENSITY": "https://taniabiswas1111198-commits.github.io/DRAINAGE_DENSITY__PAURI_GARHWAL/",
+                "RUGGEDNESS INDEX": "https://taniabiswas1111198-commits.github.io/TRI__PAURI_GARHWAL/",
+                "WETNESS INDEX": "https://taniabiswas1111198-commits.github.io/TWI_PAURI_GARHWAL/"
+            },
+            "DEHRADUN": {
+                "RELATIVE RELIEF": "https://taniabiswas1111198-commits.github.io/RELATIVE_RELIEF_DEHRADUN/",
+                "ABSOLUTE RELIEF": "https://taniabiswas1111198-commits.github.io/ABSOLUTE_RELIEF_DEHRADUN/",
+                "DISSECTION INDEX": "https://taniabiswas1111198-commits.github.io/DISSECTION-_INDEX_DEHRADUN_/",
+                "DRAINAGE DENSITY": "https://taniabiswas1111198-commits.github.io/DRAINAGE_DENSITY_DEHADUN/",
+                "RUGGEDNESS INDEX": "https://taniabiswas1111198-commits.github.io/TRI_DEHRADUN/",
+                "WETNESS INDEX": "https://taniabiswas1111198-commits.github.io/TWI_DEHRADUN/"
+            },
+            "PITHORAGARH": {
+                "RELATIVE RELIEF": "https://soumenpal960-blip.github.io/RELATIVE_RELIEF./#9/30.1331/80.3958",
+                "ABSOLUTE RELIEF": "https://soumenpal960-blip.github.io/ABSOLUTE-_RELIEF-/#9/30.1892/80.5127",
+                "DISSECTION INDEX": "https://soumenpal960-blip.github.io/DISSECTION-_INDEX-/#9/30.1380/80.4007",
+                "DRAINAGE DENSITY": "https://soumenpal960-blip.github.io/DRAINAGE-DENSITY-/#8/30.188/80.502",
+                "RUGGEDNESS INDEX": "https://soumenpal960-blip.github.io/RUGGEDNESS--INDEX-/#9/30.1382/80.4001",
+                "WETNESS INDEX": "https://soumenpal960-blip.github.io/WETNESS-_INDEX/#9/30.1382/80.4001"
+            },
+            "BAGESHWAR": {
+                "RELATIVE RELIEF": "https://soumenpal960-blip.github.io/RELATIVE-RELIEF/#10/30.0621/79.8003",
+                "ABSOLUTE RELIEF": "https://soumenpal960-blip.github.io/ABSOLUTE-RELIEF/#10/30.0458/79.8119",
+                "DISSECTION INDEX": "https://soumenpal960-blip.github.io/DISSECTION-INDEX-/#10/30.0549/79.7679",
+                "DRAINAGE DENSITY": "https://soumenpal960-blip.github.io/DRAINAGE-DENSITY/#10/29.9989/79.7978",
+                "RUGGEDNESS INDEX": "https://soumenpal960-blip.github.io/RUGGEDNESS-INDEX-/#10/30.0018/79.8561",
+                "WETNESS INDEX": "https://soumenpal960-blip.github.io/WETNESS-INDEX/#10/30.0727/79.8295"
+            },
+            "ALMORA": {
+                "RELATIVE RELIEF": "https://soumenpal960-blip.github.io/RELATIVE_RELIEF/#10/29.7334/79.4813",
+                "ABSOLUTE RELIEF": "https://soumenpal960-blip.github.io/ABSOLUTE_RELIEF/#10/29.7088/79.5294",
+                "DISSECTION INDEX": "https://soumenpal960-blip.github.io/DISSECTION-INDEX/#10/29.7088/79.5294",
+                "DRAINAGE DENSITY": "https://soumenpal960-blip.github.io/DRAINAGE_DENSITY/#10/29.7087/79.5289",
+                "RUGGEDNESS INDEX": "https://soumenpal960-blip.github.io/RUGGEDNESS-INDEX/#10/29.8065/79.2809",
+                "WETNESS INDEX": "https://soumenpal960-blip.github.io/WETNESS-INDEX/#10/29.6906/79.4818"
+            },
+            "CHAMPAWAT": {
+                "RELATIVE RELIEF": "https://aktarwasim190-ctrl.github.io/RELATIVE_RELIEF/",
+                "ABSOLUTE RELIEF": "https://aktarwasim190-ctrl.github.io/ABSOLUTE_-RELIEF/",
+                "DISSECTION INDEX": "https://aktarwasim190-ctrl.github.io/DISSECTION_INDEX/",
+                "DRAINAGE DENSITY": "https://aktarwasim190-ctrl.github.io/DRAINAGE_DENSITY/",
+                "RUGGEDNESS INDEX": "https://aktarwasim190-ctrl.github.io/RUGGEDNESS_INDEX/",
+                "WETNESS INDEX": "https://aktarwasim190-ctrl.github.io/WETNESS_INDEX/"
+            },
+            "NAINITAL": {
+                "RELATIVE RELIEF": "https://aktarwasim190-ctrl.github.io/Relative-Relief/",
+                "ABSOLUTE RELIEF": "https://aktarwasim190-ctrl.github.io/ABSOLUTE-Relief/",
+                "DISSECTION INDEX": "https://aktarwasim190-ctrl.github.io/DISSECTION-INDEX/",
+                "DRAINAGE DENSITY": "https://aktarwasim190-ctrl.github.io/DRAINAGE-DENSITY/",
+                "RUGGEDNESS INDEX": "https://aktarwasim190-ctrl.github.io/RUGGEDNESS-INDEX/",
+                "WETNESS INDEX": "https://aktarwasim190-ctrl.github.io/WETNESS-INDEX/"
+            },
+            "UDHAM SINGH NAGAR": {
+                "RELATIVE RELIEF": "https://torshabiswas24-ship-it.github.io/RELATIVE-RELIEF_UDHAM-SINGH-NAGAR/",
+                "ABSOLUTE RELIEF": "https://torshabiswas24-ship-it.github.io/ABSOLUTE-RELIEF_UDHAM-SINGH-NAGAR/",
+                "DISSECTION INDEX": "https://torshabiswas24-ship-it.github.io/DISSECTION-INDEX_UDHAM-SINGH-NAGAR/",
+                "DRAINAGE DENSITY": "https://torshabiswas24-ship-it.github.io/DRAINAGE-DENSITY_UDHAM-SINGH-NAGAR/",
+                "RUGGEDNESS INDEX": "https://torshabiswas24-ship-it.github.io/TOPOGRPHIC-RUGGEDNESS-INDEX_UDHAM-SINGH-NAGAR/",
+                "WETNESS INDEX": "https://torshabiswas24-ship-it.github.io/TOPOGRAPHIC-WETNESS-INDEX_UDHAM-SINGH-NAGAR/"
+            },
+            "HARIDWAR": {
+                "RELATIVE RELIEF": "https://torshabiswas24-ship-it.github.io/RELATIVE-RELIEF_HARIDWAR/",
+                "ABSOLUTE RELIEF": "https://torshabiswas24-ship-it.github.io/ABSOLUTE-RELIEF_HARIDWAR/",
+                "DISSECTION INDEX": "https://torshabiswas24-ship-it.github.io/DISECTION-INDEX_HARIDWAR/",
+                "DRAINAGE DENSITY": "https://torshabiswas24-ship-it.github.io/DRAINAGE-DENSITY_HARIDWAR/",
+                "RUGGEDNESS INDEX": "https://torshabiswas24-ship-it.github.io/TOPOGRAPHIC-RUGGEDNESSS-INDEX_HARIDWAR/",
+                "WETNESS INDEX": "https://torshabiswas24-ship-it.github.io/TOPOGRAPHIC-WEDNESS-INDEX_HARIDWAR/"
+            }
+        };
+
+        function handleExplore() {
+            const district = document.getElementById("districtSelect").value;
+            const param = document.getElementById("paramSelect").value;
+            const errorMsg = document.getElementById("error-msg");
+
+            if (!district || !param) {
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            errorMsg.style.display = "none";
+            const targetUrl = linkDatabase[district] ? linkDatabase[district][param] : null;
+
+            if (targetUrl) {
+                window.open(targetUrl, "_blank");
+            } else {
+                alert("Link not found for the selected combination.");
+            }
+        }
+    </script>
+</body>
+</html>

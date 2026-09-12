@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Planning and Management - Portfolio</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --accent-color: #2d6a4f;
+            --highlight-color: #52b788;
+            --dark-bg: #081c15;
+            --card-border: #d8f3dc;
+            --text-main: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background-color: #f6f9f7;
+        }
+
+        .container-custom {
+            max-width: 1460px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(8, 28, 21, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            padding: 16px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            font-size: 1.5rem;
+            color: #74c69d !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-back-home {
+            color: #ffffff;
+            border: 1px solid rgba(116, 198, 157, 0.5);
+            background: rgba(45, 106, 79, 0.35);
+            padding: 0.45rem 1.15rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back-home:hover {
+            background: #52b788;
+            color: #081c15;
+            border-color: #52b788;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Carousel */
+        .carousel-item img {
+            height: 520px;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 320px;
+            }
+        }
+
+        /* Table of Contents */
+        .toc-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--accent-color);
+        }
+
+        .toc-section h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #264653;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background-color: #f1f8f4;
+            border: 1px solid #d8f3dc;
+            transition: all 0.25s ease;
+        }
+
+        .toc-list li a:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* Analysis Cards */
+        .analysis-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.07);
+            margin-bottom: 65px;
+            overflow: hidden;
+            border: 1px solid #dbe7e2;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header-banner {
+            background: linear-gradient(135deg, #081c15, #1b4332, #2d6a4f);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 2.25rem;
+            letter-spacing: 1.8px;
+            padding: 24px 30px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .section-header-banner {
+                font-size: 1.6rem;
+                padding: 18px 20px;
+            }
+        }
+
+        .section-body {
+            padding: 42px;
+        }
+
+        .section-body h5 {
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-top: 6px;
+            margin-bottom: 22px;
+            font-size: 2.15rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 768px) {
+            .section-body h5 {
+                font-size: 1.55rem;
+            }
+        }
+
+        .section-body h6 {
+            font-weight: 800;
+            color: #1b4332;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 1.35rem;
+        }
+
+        .section-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 18px;
+        }
+
+        /* Map Layout Box */
+        .layout-upload-box {
+            width: 100%;
+            min-height: 580px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            padding: 12px;
+        }
+
+        .map-preview-img {
+            width: 100%;
+            height: auto;
+            max-height: 720px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 12px;
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.3s ease;
+        }
+
+        .map-preview-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #081c15;
+            color: #b7e4c7;
+            padding: 50px 0 35px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            margin: 0 8px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--highlight-color);
+            color: #081c15;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-custom d-flex justify-content-between align-items-center w-100">
+            <a class="navbar-brand" href="#home">
+                <i class="fa-solid fa-city me-2"></i>Urban Planning and Management
+            </a>
+            <a href="index.html#projects" class="btn-back-home">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div id="urbanCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#urbanCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#urbanCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#urbanCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#urbanCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#urbanCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Urban Skyline and Spatial Planning">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Urban Grid and Master Planning View">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Commercial Urban District and Architecture">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Smart City Infrastructure and Transit Network">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?q=80&w=1600&auto=format&fit=crop" class="d-block w-100" alt="Aerial Metropolitan Development">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#urbanCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#urbanCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container-custom my-5">
+
+        <!-- Table of Contents -->
+        <section id="toc" class="toc-section">
+            <h3><i class="fa-solid fa-list-check me-2"></i>Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#urban-development"><i class="fa-solid fa-chart-line"></i> i) LEVEL OF URBAN DEVELOPMENT</a></li>
+            </ul>
+        </section>
+
+        <!-- i) LEVEL OF URBAN DEVELOPMENT -->
+        <section id="urban-development" class="analysis-card">
+            <div class="section-header-banner">LEVEL OF URBAN DEVELOPMENT</div>
+            <div class="section-body">
+                <div class="row align-items-center g-5">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="layout-upload-box" id="box-urban-dev">
+                            <img class="map-preview-img" 
+                                 src="layouts/LEVEL_OF_URBAN_DEVELOPMENT.jpg" 
+                                 onerror="this.onerror=null; this.src='layouts/LEVEL_OF_URBAN_DEVELOPMENT.jpeg';"
+                                 alt="Level of Urban Development Layout">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <h5>URBAN DEVELOPMENT LEVELS IN KMDA (CRITIC–VIKOR MCDM MODEL)</h5>
+                        <p>This geospatial assessment stratifies urban local bodies across the Kolkata Metropolitan Area (KMDA) into five development tiers based on household amenities, housing conditions, and demographic indices:</p>
+
+                        <h6>Key Insights:</h6>
+                        <p><strong>Peripheral Growth Hubs (Very High):</strong> Kalyani, Gayeshpur, Kanchrapara, and Sonarpur-Rajpur lead the index, driven by planned residential expansion and modernized civic amenities.</p>
+                        <p><strong>Riverine Industrial Corridors (High):</strong> Bhatpara, Barrackpore, and Rishra sustain elevated scores along the Hooghly River due to dense transport connectivity and commercial utility networks.</p>
+                        <p><strong>Transitional Urban Belts (Moderate to High):</strong> Bidhannagar, Rajarhat, and the Dum Dum cluster represent dynamic growth corridors marked by rapid real estate and commercial development.</p>
+                        <p><strong>Infrastructural Deficit Zones (Very Low):</strong> Western and peripheral nodes—including Howrah, Uluberia, Dankuni, and Barasat—highlight critical gaps in public utilities and basic amenities relative to population pressure.</p>
+                        <p>This model provides a spatial decision-support baseline for regional planners to prioritize municipal funding and target infrastructure investments across KMDA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container-custom">
+            <p>&copy; 2026 Portfolio | Urban Planning and Management & Geospatial Assessment</p>
+            <div class="social-links">
+                <a href="mailto:contact@geospatial.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
